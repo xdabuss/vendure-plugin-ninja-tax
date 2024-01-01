@@ -10,14 +10,14 @@ import {
 } from '@vendure/core';
 import { SqljsInitializer, createTestEnvironment, registerInitializer } from '@vendure/testing';
 import path from 'path';
-import { initialData } from './fixtures/initial-data';
-import { NinjaTaxPlugin } from '../src/ninja-tax.plugin';
+import { initialData } from './test/config/initial-data';
+import { NinjaTaxPlugin } from './src/ninja-tax.plugin';
 import { compileUiExtensions } from '@vendure/ui-devkit/compiler';
 
 (async () => {
     require('dotenv').config();
     const { testConfig } = require('@vendure/testing');
-    registerInitializer('sqljs', new SqljsInitializer(path.join(__dirname, '__data__dev')));
+    registerInitializer('sqljs', new SqljsInitializer(path.join(__dirname, '__data__')));
     const config = mergeConfig(testConfig, {
         logger: new DefaultLogger({ level: LogLevel.Debug }),
         apiOptions: {
@@ -41,7 +41,7 @@ import { compileUiExtensions } from '@vendure/ui-devkit/compiler';
     const { server, shopClient, adminClient } = createTestEnvironment(config);
     await server.init({
         initialData,
-        productsCsvPath: path.join(__dirname, 'fixtures/products.csv'),
+        productsCsvPath: path.join(__dirname, '/test/config/products.csv'),
     });
     // Publish a StockMovementEvent to trigger the BackInStockEvent
     // const ctx = new RequestContext({

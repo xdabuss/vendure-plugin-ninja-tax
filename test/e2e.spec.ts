@@ -4,11 +4,11 @@ import { SqljsInitializer, registerInitializer, createTestEnvironment, testConfi
 import { describe, beforeAll, afterAll, it, expect } from 'vitest';
 
 import { NinjaTaxPlugin } from '../src/ninja-tax.plugin';
-import { initialData } from './fixtures/initial-data';
+import { initialData } from './config/initial-data';
+
+registerInitializer('sqljs', new SqljsInitializer(path.join(__dirname, '__data__')));
 
 describe('my plugin', () => {
-    registerInitializer('sqljs', new SqljsInitializer(path.join(__dirname, '__data__')));
-
     const { server, adminClient, shopClient } = createTestEnvironment({
         ...testConfig,
         plugins: [NinjaTaxPlugin],
@@ -16,7 +16,7 @@ describe('my plugin', () => {
 
     beforeAll(async () => {
         await server.init({
-            productsCsvPath: path.join(__dirname, 'fixtures/products.csv'),
+            productsCsvPath: path.join(__dirname, 'config/products.csv'),
             initialData,
             customerCount: 2,
         });
@@ -25,6 +25,10 @@ describe('my plugin', () => {
 
     afterAll(async () => {
         await server.destroy();
+    });
+
+    it('runs a blank test', async () => {
+        expect(1).toEqual(1);
     });
 
     // it('myNewQuery returns the expected result', async () => {

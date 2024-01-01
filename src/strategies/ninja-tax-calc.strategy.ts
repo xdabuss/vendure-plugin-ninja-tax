@@ -12,8 +12,8 @@ import { NINJA_TAX_PLUGIN_OPTIONS } from '../constants';
  * @docsCategory tax
  */
 export class NinjaTaxLineCalculationStrategy implements TaxLineCalculationStrategy {
-    private ninjaTaxService: NinjaTaxService;
-    private options: NinjaTaxPluginInitOptions;
+    private ninjaTaxService!: NinjaTaxService;
+    private options!: NinjaTaxPluginInitOptions;
 
     init(injector: Injector) {
         this.ninjaTaxService = injector.get(NinjaTaxService);
