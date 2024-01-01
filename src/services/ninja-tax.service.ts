@@ -8,8 +8,12 @@ import { NinjaTaxRates } from '../types';
 
 @Injectable()
 export class NinjaTaxService {
-    // refactor into 2 methods
-    async getTaxRates(zipCode: string): Promise<TaxLine[]> {
+    async getTaxLinesForZipCode(zipCode: string): Promise<TaxLine[]> {
+        const taxRates = await this._getNinjaTaxRates(zipCode);
+        return this._getTaxLines(taxRates);
+    }
+
+    async _getNinjaTaxRates(zipCode: string): Promise<NinjaTaxRates> {
         const response: AxiosResponse<NinjaTaxRates[]> = await axios.get(
             `${NINJA_TAX_API_URL}?zip_code=${zipCode}`,
             {
@@ -18,17 +22,19 @@ export class NinjaTaxService {
                 },
             },
         );
-        const taxRateResponse = response.data[0];
+        return response.data[0];
+    }
 
-        const taxLines = Object.keys(taxRateResponse)
+    _getTaxLines(taxRates: NinjaTaxRates): TaxLine[] {
+        const taxLines = Object.keys(taxRates)
             .filter(key => key !== 'zip_code' && key !== 'total_rate')
             .filter(key => {
-                return Number(taxRateResponse[key as keyof NinjaTaxRates]) !== 0;
+                return Number(taxRates[key as keyof NinjaTaxRates]) !== 0;
             })
             .map(key => {
                 return {
                     description: key.replace('_rate', ''),
-                    taxRate: Number(taxRateResponse[key as keyof NinjaTaxRates]) * 100,
+                    taxRate: Number(taxRates[key as keyof NinjaTaxRates]) * 100,
                 };
             });
         return taxLines;

@@ -24,11 +24,4 @@ export class NinjaTaxPlugin {
         this.options = options;
         return NinjaTaxPlugin;
     }
-
-    // constructor(private readonly ninjaTaxService: NinjaTaxService) {}
-
-    // async onApplicationBootstrap(): Promise<void> {
-    //     const rates = await this.ninjaTaxService.getTaxRates('60013');
-    //     console.log(rates);
-    // }
 }

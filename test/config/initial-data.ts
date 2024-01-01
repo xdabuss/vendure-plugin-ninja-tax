@@ -2,7 +2,7 @@ import { InitialData, LanguageCode } from '@vendure/core';
 
 export const initialData: InitialData = {
     defaultLanguage: LanguageCode.en,
-    defaultZone: 'NL',
+    defaultZone: 'US',
     taxRates: [
         { name: 'Standard Tax', percentage: 21 },
         { name: 'Reduced Tax', percentage: 9 },
@@ -13,7 +13,10 @@ export const initialData: InitialData = {
         { name: 'shipping by zone', price: 600 },
     ],
     paymentMethods: [],
-    countries: [{ name: 'Nederland', code: 'NL', zone: 'NL' }],
+    countries: [
+        { name: 'United States', code: 'US', zone: 'US' },
+        { name: 'Germany', code: 'DE', zone: 'Europe' },
+    ],
     collections: [
         {
             name: 'Electronics',

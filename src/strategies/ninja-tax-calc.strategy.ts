@@ -25,10 +25,12 @@ export class NinjaTaxLineCalculationStrategy implements TaxLineCalculationStrate
     async calculate(args: CalculateTaxLinesArgs): Promise<TaxLine[]> {
         const { ctx, orderLine, applicableTaxRate, order } = args;
         const zipcode = order.shippingAddress.postalCode;
+        const countryCode = order.shippingAddress.countryCode;
 
         // delay getting tax rates from NinjaAPI until a shipping address is added to the order
-        if (zipcode) {
-            return await this.ninjaTaxService.getTaxRates(zipcode);
+        // also, only get tax rates from NinjaAPI if the shipping address is in the US
+        if (countryCode === 'US' && zipcode) {
+            return await this.ninjaTaxService.getTaxLinesForZipCode(zipcode);
         } else {
             // this is the default behavior specified by DefaultTaxLineCalculationStrategy
             return [applicableTaxRate.apply(orderLine.proratedUnitPrice)];
