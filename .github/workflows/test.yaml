@@ -1,0 +1,35 @@
+name: Test package
+on: ['pull_request']
+
+jobs:
+    lint:
+        name: Prettier formatting
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                shell: bash
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: '18'
+            - name: Install dependencies
+              run: yarn
+            - name: Is formatted and linted
+              run: yarn lint:check
+    test:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                shell: bash
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: '18'
+            - name: Build
+              run: yarn && yarn build
+            - name: Test
+              run: yarn test

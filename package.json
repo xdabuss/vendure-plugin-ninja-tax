@@ -1,0 +1,48 @@
+{
+    "name": "vendure-plugin-ninja-tax",
+    "version": "1.0.0",
+    "description": "Vendure plugin for sales tax in US using NinjaAPI",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "scripts": {
+        "postinstall": "yarn husky install",
+        "test": "vitest run",
+        "lint:check": "yarn prettier --check .",
+        "lint:fix": "yarn prettier --write . ",
+        "build": "rimraf dist && tsc"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/xdabuss/vendure-plugin-ninja-tax.git"
+    },
+    "keywords": [
+        "vendure",
+        "us",
+        "tax",
+        "sales"
+    ],
+    "author": "Alex Bussan amity.solutions23@gmail.com",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/xdabuss/vendure-plugin-ninja-tax/issues"
+    },
+    "homepage": "https://github.com/xdabuss/vendure-plugin-ninja-tax#readme",
+    "dependencies": {
+        "@vendure/core": "^2.1.5",
+        "axios": "^1.6.3"
+    },
+    "devDependencies": {
+        "@vendure/admin-ui-plugin": "^2.1.5",
+        "@vendure/testing": "^2.1.5",
+        "@vendure/ui-devkit": "^2.1.5",
+        "husky": "^8.0.3",
+        "prettier": "^3.1.1",
+        "rimraf": "^5.0.5",
+        "unplugin-swc": "^1.4.4",
+        "vitest": "^1.1.1"
+    }
+}
