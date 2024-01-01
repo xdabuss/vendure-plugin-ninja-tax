@@ -4,6 +4,7 @@ import { SqljsInitializer, registerInitializer, createTestEnvironment, testConfi
 import { describe, beforeAll, afterAll, it, expect } from 'vitest';
 
 import { NinjaTaxPlugin } from '../src/ninja-tax.plugin';
+import { NinjaTaxService } from '../src/services/ninja-tax.service';
 import { initialData } from './config/initial-data';
 
 registerInitializer('sqljs', new SqljsInitializer(path.join(__dirname, '__data__')));
@@ -28,7 +29,15 @@ describe('my plugin', () => {
     });
 
     it('runs a blank test', async () => {
+        console.log(process.env.NINJA_KEY);
         expect(1).toEqual(1);
+    });
+
+    let ninjaService: NinjaTaxService;
+    it('calls ninja api', async () => {
+        ninjaService = server.app.get(NinjaTaxService);
+        const taxLines = await ninjaService.getTaxRates('60013');
+        expect(taxLines.length);
     });
 
     // it('myNewQuery returns the expected result', async () => {

@@ -43,6 +43,7 @@
         "@vendure/email-plugin": "2.1.5",
         "@vendure/testing": "2.1.5",
         "@vendure/ui-devkit": "2.1.5",
+        "dotenv": "^16.3.1",
         "husky": "^8.0.3",
         "prettier": "^3.1.1",
         "rimraf": "^4.1.2",
