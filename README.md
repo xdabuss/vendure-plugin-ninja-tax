@@ -1,7 +1,7 @@
 # NinjaAPI US Tax Plugin
 
-Provides a simple way to add in US sales tax to Vendure orders. Plugin will add `TaxLines` to the order based on the customer's zipcode.
-Tax data is retrieved from `https://api-ninjas.com/api/salestax`.
+This plugin provides a simple way to add in US sales tax to Vendure orders. The plugin adds `TaxLines` to an order based on the customer's zipcode.
+Tax data is retrieved from `https://api-ninjas.com/api/salestax`. State, city, county, and misc. tax rates for a given zip code are retrieved from this endpoint and added as separate `TaxLines`.
 
 ## Usage
 
@@ -27,7 +27,7 @@ export const config: VendureConfig = {
 
 ## Notes
 
--   If the shiiping address is not from the US, the tax lines will be calculated using the `DefaultTaxLineCalculationStrategy`
+-   If the shiping address is not from the US, the tax lines will be calculated using Vendure's `DefaultTaxLineCalculationStrategy`
 
 ## Possible improvements
 
