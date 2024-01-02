@@ -1,9 +1,8 @@
-import axios from 'axios';
-import { AxiosResponse } from 'axios';
 import { Injectable } from '@nestjs/common';
 import { TaxLine } from '@vendure/common/lib/generated-types';
+import axios, { AxiosResponse } from 'axios';
 
-import { NINJA_TAX_API_URL, NINJA_KEY } from '../constants';
+import { NINJA_KEY, NINJA_TAX_API_URL } from '../constants';
 import { NinjaTaxRates } from '../types';
 
 @Injectable()

@@ -1,0 +1,12 @@
+{
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/build": true,
+        "yarn.lock": true
+    },
+    "eslint.validate": ["typescript"],
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    }
+}

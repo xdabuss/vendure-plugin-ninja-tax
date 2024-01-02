@@ -1,9 +1,9 @@
 import { PluginCommonModule, Type, VendurePlugin } from '@vendure/core';
 
-import { NinjaTaxService } from './services/ninja-tax.service';
 import { NINJA_TAX_PLUGIN_OPTIONS } from './constants';
-import { NinjaTaxPluginInitOptions } from './types';
+import { NinjaTaxService } from './services/ninja-tax.service';
 import { NinjaTaxLineCalculationStrategy } from './strategies/ninja-tax-calc.strategy';
+import { NinjaTaxPluginInitOptions } from './types';
 
 @VendurePlugin({
     imports: [PluginCommonModule],

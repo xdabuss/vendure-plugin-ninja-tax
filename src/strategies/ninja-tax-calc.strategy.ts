@@ -1,9 +1,10 @@
 import { TaxLine } from '@vendure/common/lib/generated-types';
-
 import { CalculateTaxLinesArgs, Injector, TaxLineCalculationStrategy } from '@vendure/core';
+
+import { NINJA_TAX_PLUGIN_OPTIONS } from '../constants';
 import { NinjaTaxService } from '../services/ninja-tax.service';
 import { NinjaTaxPluginInitOptions } from '../types';
-import { NINJA_TAX_PLUGIN_OPTIONS } from '../constants';
+
 /**
  * @description
  * {@link TaxLineCalculationStrategy}  which usese Ninja Tax API to calculate tax rates
