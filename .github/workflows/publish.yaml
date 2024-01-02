@@ -22,8 +22,6 @@ jobs:
               run: yarn
             - name: Build
               run: yarn build
-            - name: Stash changes that build might have caused by build
-              run: git stash
             - name: Publish
               run: npm publish --provenance --access public
               env:
