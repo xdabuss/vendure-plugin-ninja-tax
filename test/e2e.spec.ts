@@ -1,12 +1,12 @@
-import gql from 'graphql-tag';
 import path from 'path';
-import { SqljsInitializer, registerInitializer, createTestEnvironment, testConfig } from '@vendure/testing';
-import { ChannelService, OrderService, RequestContext } from '@vendure/core';
-import { describe, beforeAll, afterAll, it, expect, vi } from 'vitest';
 
+import { ChannelService, OrderService, RequestContext } from '@vendure/core';
+import { SqljsInitializer, createTestEnvironment, registerInitializer, testConfig } from '@vendure/testing';
+import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
+
+import { initialData } from './config/initial-data';
 import { NinjaTaxPlugin } from '../src/ninja-tax.plugin';
 import { NinjaTaxService } from '../src/services/ninja-tax.service';
-import { initialData } from './config/initial-data';
 
 registerInitializer('sqljs', new SqljsInitializer(path.join(__dirname, '__data__')));
 
