@@ -1,6 +1,6 @@
 {
     "name": "@xdabuss/vendure-plugin-ninja-tax",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Vendure plugin for sales tax in US using NinjaAPI",
     "main": "dist/src/ninja-tax.plugin.js",
     "types": "dist/src/ninja-tax.plugin.d.ts",
