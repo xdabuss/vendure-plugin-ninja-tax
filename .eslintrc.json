@@ -17,7 +17,17 @@
         "plugin:import/typescript"
     ],
     "root": true,
-    "ignorePatterns": ["dist", "node_modules", "__admin-ui", "*.min.js", ".temp", "__data__"],
+    "ignorePatterns": [
+        "dist",
+        "node_modules",
+        "__admin-ui",
+        "*.min.js",
+        ".temp",
+        "__data__",
+        "dev-server.ts",
+        "test/",
+        "vitest.config.ts"
+    ],
     "settings": {
         "import/resolver": {
             "typescript": {
