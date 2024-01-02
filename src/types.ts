@@ -1,7 +1,11 @@
 /**
  * The plugin can be configured using the following options:
  */
-export interface NinjaTaxPluginInitOptions {}
+export interface NinjaTaxPluginInitOptions {
+    // The fallback US sales tax rate to use if the NinjaAPI is unavailable
+    // range: 0.0 - 1.0
+    fallbackTaxRate?: number;
+}
 
 export type NinjaTaxRates = {
     zip_code: string;

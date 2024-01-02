@@ -1,15 +1,23 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { TaxLine } from '@vendure/common/lib/generated-types';
+import { Logger } from '@vendure/core';
 import axios, { AxiosResponse } from 'axios';
 
-import { NINJA_KEY, NINJA_TAX_API_URL } from '../constants';
-import { NinjaTaxRates } from '../types';
+import { NINJA_KEY, NINJA_TAX_API_URL, NINJA_TAX_PLUGIN_OPTIONS } from '../constants';
+import { NinjaTaxPluginInitOptions, NinjaTaxRates } from '../types';
 
 @Injectable()
 export class NinjaTaxService {
+    constructor(@Inject(NINJA_TAX_PLUGIN_OPTIONS) private options: NinjaTaxPluginInitOptions) {}
+
     async getTaxLinesForZipCode(zipCode: string): Promise<TaxLine[]> {
-        const taxRates = await this._getNinjaTaxRates(zipCode);
-        return this._getTaxLines(taxRates);
+        try {
+            const taxRates = await this._getNinjaTaxRates(zipCode);
+            return this._getTaxLines(taxRates);
+        } catch (error) {
+            Logger.error(`Error getting tax rates from NinjaAPI: ${error}`);
+            return [{ description: 'Fallback US tax', taxRate: this.options.fallbackTaxRate as number }];
+        }
     }
 
     async _getNinjaTaxRates(zipCode: string): Promise<NinjaTaxRates> {

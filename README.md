@@ -12,10 +12,12 @@ Tax data is retrieved from `https://api-ninjas.com/api/salestax`. State, city, c
 export const config: VendureConfig = {
   // .. the rest of your vendure config
   plugins: [
-    NinjaTaxPlugin.init({}),
+    NinjaTaxPlugin.init({fallbackTaxRate: 0.15}),
     )},
 };
 ```
+
+`fallbackTaxRate` is an optional value that will be used for a US customer if the call to NinjaAPI fails. If unset, its default is 0.15 (15%), since that should cover even the highest US sales tax locations. My thinking is you'd rather let the order continue (and possible refund the extra tax later) with a default rate than have the order fail if NinjaAPI is unresponsive.
 
 3. Create Ninja API [account](https://api-ninjas.com/api), create API key, add `NINJA_KEY=<example_key>` to root level `.env` file
 
@@ -33,7 +35,6 @@ export const config: VendureConfig = {
 ## Possible improvements
 
 -   Use caching for the tax rates so that NinjaAPI doesn't need to be called if customer's zipcode is already in cache
--   Currently, if calling NinjaAPI fails, the exception is not caught, which means that the order cannot proceed. I'm not sure what the ideal way to handle this uphappy path is. Should we proceed with the order with some default value for tax?
 
 ## Development
 
