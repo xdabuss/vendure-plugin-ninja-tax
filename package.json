@@ -1,5 +1,5 @@
 {
-    "name": "vendure-plugin-ninja-tax",
+    "name": "@xdabuss/vendure-plugin-ninja-tax",
     "version": "1.0.0",
     "description": "Vendure plugin for sales tax in US using NinjaAPI",
     "main": "dist/index.js",
@@ -8,6 +8,7 @@
         "dist",
         "README.md"
     ],
+    "private": "false",
     "scripts": {
         "postinstall": "yarn husky install",
         "test": "vitest run",
