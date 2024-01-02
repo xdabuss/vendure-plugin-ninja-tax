@@ -21,17 +21,19 @@ export const config: VendureConfig = {
 
 ## Relevant Docs
 
+-   https://api-ninjas.com/api/salestax
 -   https://docs.vendure.io/guides/core-concepts/taxes/
 -   https://docs.vendure.io/reference/typescript-api/tax/tax-line-calculation-strategy
 -   https://docs.vendure.io/reference/typescript-api/orders/order-item-price-calculation-strategy/
 
 ## Notes
 
--   If the shiping address is not from the US, the tax lines will be calculated using Vendure's `DefaultTaxLineCalculationStrategy`
+-   If the shiping address is not from the US (`order.shippingAddress.countryCode !== "US"`), the tax lines will be calculated using Vendure's `DefaultTaxLineCalculationStrategy`
 
 ## Possible improvements
 
 -   Use caching for the tax rates so that NinjaAPI doesn't need to be called if customer's zipcode is already in cache
+-   Currently, if calling NinjaAPI fails, the exception is not caught, which means that the order cannot proceed. I'm not sure what the ideal way to handle this uphappy path is. Should we proceed with the order with some default value for tax?
 
 ## Development
 
