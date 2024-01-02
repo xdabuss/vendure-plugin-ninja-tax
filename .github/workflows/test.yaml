@@ -33,3 +33,5 @@ jobs:
               run: yarn && yarn build
             - name: Test
               run: yarn test
+              env:
+                  NINJA_KEY: ${{ secrets.NINJA_KEY }}
