@@ -17,17 +17,7 @@
         "plugin:import/typescript"
     ],
     "root": true,
-    "ignorePatterns": [
-        "dist",
-        "node_modules",
-        "__admin-ui",
-        "*.min.js",
-        ".temp",
-        "__data__",
-        "test",
-        "dev-server.ts",
-        "vitest.config.ts"
-    ],
+    "ignorePatterns": ["dist", "node_modules", "__admin-ui", "*.min.js", ".temp", "__data__"],
     "settings": {
         "import/resolver": {
             "typescript": {
@@ -37,6 +27,7 @@
     },
     "rules": {
         "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-var-requires": "off",
         "sort-imports": [
             "error",
             {
