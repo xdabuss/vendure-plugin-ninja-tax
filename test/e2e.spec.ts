@@ -133,7 +133,7 @@ describe('NinjaAPI tax plugin', () => {
             streetLine1: '123 Main St',
             postalCode: '60013',
         });
-        expect(spy).toHaveLastReturnedWith([{ description: 'Fallback US tax', taxRate: 0.15 }]);
+        expect(spy).toHaveLastReturnedWith([{ description: 'Fallback US tax', taxRate: 15 }]);
     });
 
     // uses custom fallback tax rate when when NinjaAPI is unavailable
